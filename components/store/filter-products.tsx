@@ -106,6 +106,10 @@ export default function FilterProducts({ products }: FilterProductsProps) {
                                             color={colorOption.color}
                                             className={colorOption.border}
                                             onClick={() => {
+                                                if (colorOption.value === color) {
+                                                    setColor(null);
+                                                    return;
+                                                }
                                                 setColor(colorOption.value);
                                             }}
                                             checked={colorOption.value === color}
@@ -125,6 +129,10 @@ export default function FilterProducts({ products }: FilterProductsProps) {
                                             value={sizeOption}
                                             className="border-gray-500"
                                             onClick={() => {
+                                                if (sizeOption === size) {
+                                                    setSize(null);
+                                                    return;
+                                                }
                                                 setSize(sizeOption);
                                             }}
                                             checked={sizeOption === size}
@@ -136,19 +144,6 @@ export default function FilterProducts({ products }: FilterProductsProps) {
                             </RadioSizeGroup>
                         </div>
                     </CardContent>
-                    <CardFooter>
-                        <Button
-                            className="w-full"
-                            variant="destructive"
-                            onClick={() => {
-                                setSize(null);
-                                setColor(null);
-                                setCategory([]);
-                            }}
-                        >
-                            Reiniciar filtros
-                        </Button>
-                    </CardFooter>
                 </Card>
             </aside>
             <Products products={filteredProducts} />

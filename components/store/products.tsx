@@ -26,7 +26,7 @@ export default function Products({ products }: ProductsProps) {
     }, [products, sortBy])
 
     return (
-        <div className="xl:col-span-3">
+        <div className="lg:col-span-3">
             {
                 sortedProducts.length > 0 ? (
                     <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
