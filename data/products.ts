@@ -59,3 +59,12 @@ export async function getProductById(id: string) {
         },
     });
 }
+
+export async function getCategories() {
+    const query = await prisma.category.findMany();
+
+    return query.map((category) => ({
+        value: category.id,
+        label: category.name,
+    }));
+}

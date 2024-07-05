@@ -19,11 +19,11 @@ export async function createProduct(values: z.infer<typeof ProductSchema>) {
     try {
         // Buscar o crear la categoría
         const categoryRecord = await prisma.category.upsert({
-            where: { slug: slugify(category) },
+            where: { slug: slugify(category!) },
             update: {},
             create: {
-                name: category,
-                slug: slugify(category),
+                name: category!,
+                slug: slugify(category!),
             },
         });
 

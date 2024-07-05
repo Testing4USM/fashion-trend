@@ -17,13 +17,6 @@ import { saveProduct } from "@/actions/products";
 import { toast } from "sonner";
 import { useState, useEffect } from "react";
 
-// Simulando la carga de categorías desde la base de datos
-const categories = [
-    { id: "cat1", name: "Clothing" },
-    { id: "cat2", name: "Electronics" },
-    { id: "cat3", name: "Accessories" },
-];
-
 const colors = [
     { name: "Rojo", value: "red", color: "bg-red-500", border: "border-red-500" },
     { name: "Azul", value: "blue", color: "bg-blue-500", border: "border-blue-500" },
@@ -33,11 +26,17 @@ const colors = [
 
 const sizes = ["xs", "s", "m", "l", "xl", "xxl"];
 
-type EditFormProductProps = {
-    product: Product;
+type Category = {
+    label: string;
+    value: string;
 }
 
-export default function EditFormProduct({ product }: EditFormProductProps) {
+type EditFormProductProps = {
+    product: Product;
+    categories: Category[];
+}
+
+export default function EditFormProduct({ product, categories }: EditFormProductProps) {
     const [pending, setPending] = useState(false);
 
     return (
@@ -130,15 +129,15 @@ export default function EditFormProduct({ product }: EditFormProductProps) {
                                 </div>
                                 <div className="grid gap-3">
                                     <Label htmlFor="category">Categoría</Label>
-                                    <Select id="category" name="category" defaultValue={product.categoryId}>
+                                    <Select name="category" defaultValue={product.categoryId}>
                                         <SelectTrigger aria-label="Selecciona una categoría">
                                             <SelectValue placeholder="Selecciona una categoría" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {/* Aquí debes cargar las categorías desde tu base de datos */}
                                             {categories.map((cat) => (
-                                                <SelectItem key={cat.id} value={cat.id}>
-                                                    {cat.name}
+                                                <SelectItem key={cat.value} value={cat.value}>
+                                                    {cat.label}
                                                 </SelectItem>
                                             ))}
                                         </SelectContent>
