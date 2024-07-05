@@ -23,7 +23,7 @@ export default function Product({ product }: ProductProps) {
             <Card className="h-fit">
                 <CardHeader>
                     <Image
-                        src={`/products/${product.image}`}
+                        src={`${product.image}`}
                         alt={product.name}
                         width={200}
                         height={200}

@@ -20,7 +20,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         <>
             <div className="lg:col-span-2 p-2 border-2 border-primary rounded-sm">
                 <Image
-                    src={`/products/${product.image}`}
+                    src={`${product.image}`}
                     alt={product.name}
                     width={200}
                     height={200}

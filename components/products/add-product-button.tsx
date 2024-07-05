@@ -4,11 +4,10 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PlusCircle } from "lucide-react";
-import { ReloadIcon } from "@radix-ui/react-icons"
+import { ReloadIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod"
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "@/components/ui/textarea";
-
 import * as z from "zod";
 import { ProductSchema } from "@/schemas";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
@@ -73,7 +72,7 @@ export default function AddProductButton() {
                                 <FormItem>
                                     <FormLabel>Nombre del producto</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Reloj de mano" {...field} required/>
+                                        <Input placeholder="Reloj de mano" {...field} required />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -86,7 +85,7 @@ export default function AddProductButton() {
                                 <FormItem>
                                     <FormLabel>Precio</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="0" {...field} required/>
+                                        <Input placeholder="0" {...field} required />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -130,7 +129,7 @@ export default function AddProductButton() {
                                 <FormItem>
                                     <FormLabel>Categoría</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Category" {...field} required/>
+                                        <Input placeholder="Categoría" {...field} required />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

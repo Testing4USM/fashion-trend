@@ -93,7 +93,7 @@ export default function ProductsTable({ products }: ProducstTableProps) {
                                                 alt="Product image"
                                                 className="aspect-square rounded-md object-cover"
                                                 height="64"
-                                                src={`/products/${product.image}`}
+                                                src={`${product.image}`}
                                                 width="64"
                                             />
                                         </TableCell>

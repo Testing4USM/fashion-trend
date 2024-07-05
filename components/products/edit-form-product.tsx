@@ -15,8 +15,14 @@ import { RadioColor, RadioColorGroup } from "@/components/store/radio-color";
 import { RadioSize, RadioSizeGroup } from "@/components/store/size-radio";
 import { saveProduct } from "@/actions/products";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
+// Simulando la carga de categorías desde la base de datos
+const categories = [
+    { id: "cat1", name: "Clothing" },
+    { id: "cat2", name: "Electronics" },
+    { id: "cat3", name: "Accessories" },
+];
 
 const colors = [
     { name: "Rojo", value: "red", color: "bg-red-500", border: "border-red-500" },
@@ -113,7 +119,7 @@ export default function EditFormProduct({ product }: EditFormProductProps) {
                                     />
                                 </div>
                                 <div className="grid gap-3">
-                                    <Label htmlFor="name">Disponibilidad</Label>
+                                    <Label htmlFor="stock">Disponibilidad</Label>
                                     <Input
                                         id="stock"
                                         name="stock"
@@ -124,22 +130,17 @@ export default function EditFormProduct({ product }: EditFormProductProps) {
                                 </div>
                                 <div className="grid gap-3">
                                     <Label htmlFor="category">Categoría</Label>
-                                    <Select>
-                                        <SelectTrigger
-                                            id="category"
-                                            name="category"
-                                            aria-label="Selecciona una categoría"
-                                        >
+                                    <Select id="category" name="category" defaultValue={product.categoryId}>
+                                        <SelectTrigger aria-label="Selecciona una categoría">
                                             <SelectValue placeholder="Selecciona una categoría" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="clothing">Clothing</SelectItem>
-                                            <SelectItem value="electronics">
-                                                Electronics
-                                            </SelectItem>
-                                            <SelectItem value="accessories">
-                                                Accessories
-                                            </SelectItem>
+                                            {/* Aquí debes cargar las categorías desde tu base de datos */}
+                                            {categories.map((cat) => (
+                                                <SelectItem key={cat.id} value={cat.id}>
+                                                    {cat.name}
+                                                </SelectItem>
+                                            ))}
                                         </SelectContent>
                                     </Select>
                                 </div>

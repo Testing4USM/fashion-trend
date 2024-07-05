@@ -17,6 +17,16 @@ export async function createProduct(values: z.infer<typeof ProductSchema>) {
     }
 
     try {
+        // Buscar o crear la categoría
+        const categoryRecord = await prisma.category.upsert({
+            where: { slug: slugify(category) },
+            update: {},
+            create: {
+                name: category,
+                slug: slugify(category),
+            },
+        });
+
         await prisma.product.create({
             data: {
                 name,
@@ -24,15 +34,16 @@ export async function createProduct(values: z.infer<typeof ProductSchema>) {
                 description,
                 stock,
                 image,
-                categoryId: "clwa30b210000lorxs69rwfbk",
+                categoryId: categoryRecord.id,
                 slug,
             },
         });
     } catch (error) {
+        console.error("Error al crear el producto:", error);
         status = {
             error: true,
             message: "¡Hubo un error al crear el producto!",
-        }
+        };
     }
 
     revalidatePath("/panel/productos");
@@ -57,6 +68,7 @@ export async function saveProduct(id: string, formData: FormData) {
         size: formData.get("size") as string,
         status: formData.get("status") as Status,
         slug,
+        categoryId: formData.get("category") as string, // Asegúrate de que esto esté alineado con tu modelo
     }
 
     try {

@@ -22,7 +22,7 @@ export default function User() {
                     className="overflow-hidden rounded-full"
                 >
                     <Image
-                        src="/placeholder-user.jpg"
+                        src="/png-transparent-google-verified-hd-logo.png"
                         width={36}
                         height={36}
                         alt="Avatar"

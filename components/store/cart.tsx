@@ -30,7 +30,7 @@ function ProductQuantity({ product, addToCart, removeFromCart, removeProduct }: 
         <div className="flex flex-col gap-4">
             <div className="flex gap-8 items-start">
                 <Image
-                    src={`/products/${product.image}`}
+                    src={`${product.image}`}
                     alt={product.name}
                     width={96}
                     height={0}
