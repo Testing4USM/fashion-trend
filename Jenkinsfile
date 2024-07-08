@@ -4,6 +4,9 @@ pipeline {
         CHROME_BIN = '/usr/bin/google-chrome'
         CHROME_DRIVER = '/usr/local/bin/chromedriver'
     }
+    tools {
+        nodejs "NodeJS"  // Aquí utiliza el nombre que configuraste para la instalación de Node.js
+    }
     stages {
         stage('Setup Environment') {
             steps {
