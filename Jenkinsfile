@@ -13,17 +13,29 @@ pipeline {
                 script {
                     if (isUnix()) {
                         sh '''
+                            # Ensure wget is installed
+                            if ! [ -x "$(command -v wget)" ]; then
+                                echo "wget not found, installing wget"
+                                brew install wget
+                            fi
+
+                            # Ensure curl is installed
+                            if ! [ -x "$(command -v curl)" ]; then
+                                echo "curl not found, installing curl"
+                                brew install curl
+                            fi
+
                             # Install Chrome
-                            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-                            echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-                            sudo apt-get update
-                            sudo apt-get install -y google-chrome-stable
+                            if ! [ -x "$(command -v google-chrome)" ]; then
+                                echo "Installing Google Chrome"
+                                brew install --cask google-chrome
+                            fi
 
                             # Install ChromeDriver
                             CHROME_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
-                            wget -N http://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
-                            unzip chromedriver_linux64.zip -d /usr/local/bin
-                            rm chromedriver_linux64.zip
+                            wget -N http://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_mac64.zip
+                            unzip chromedriver_mac64.zip -d /usr/local/bin
+                            rm chromedriver_mac64.zip
                         '''
                     }
                 }
@@ -48,17 +60,6 @@ pipeline {
             steps {
                 sh 'npm run test'
             }
-        }
-    }
-    post {
-        always {
-            archiveArtifacts artifacts: '**/results/*', allowEmptyArchive: true
-            junit 'results/**/*.xml'
-        }
-        failure {
-            mail to: 'you@example.com',
-                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-                 body: "Something is wrong with ${env.JOB_NAME}."
         }
     }
 }
