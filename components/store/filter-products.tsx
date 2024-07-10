@@ -1,6 +1,6 @@
 "use client"
 
-import { Product } from "@prisma/client";
+import { Category, Product } from "@prisma/client";
 
 import {
     Card,
@@ -20,6 +20,7 @@ import { Separator } from "../ui/separator";
 
 type FilterProductsProps = {
     products: Product[];
+    categories: Category[];
 }
 
 const colors = [
@@ -49,8 +50,6 @@ export default function FilterProducts({ products }: FilterProductsProps) {
         if (color) {
             filtered = filtered.filter((product) => product.color === color);
         }
-
-        console.log(category);
 
         return filtered;
     }, [products, size, color, category]);

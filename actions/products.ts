@@ -74,7 +74,7 @@ export async function saveProduct(id: string, formData: FormData) {
             message: "¡Hubo un error al actualizar el producto!",
         }
 
-        console.log(error);
+        console.error(error);
     }
 
     revalidatePath(`/panel/productos/${id}`);
