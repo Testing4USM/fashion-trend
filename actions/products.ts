@@ -108,4 +108,3 @@ export const deleteProduct = async (id: string) => {
 
     return status;
 }
-
