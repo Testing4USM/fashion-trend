@@ -27,6 +27,6 @@ describe('Selenium Tests', () => {
         await driver.sleep(2000);
         await driver.findElement(By.css('.lucide-user')).click();
         await driver.sleep(2000);
-        console.log('Test 2 passed: Navigate and click buttons');
+        console.log('Test 2 passed: Go to admin page');
     });
 });
