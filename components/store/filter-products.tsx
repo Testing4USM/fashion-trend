@@ -13,7 +13,6 @@ import Products from "@/components/store/products";
 import { useMemo, useState } from "react";
 import { RadioColor, RadioColorGroup } from "./radio-color";
 import { RadioSize, RadioSizeGroup } from "./size-radio";
-import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { capitalize } from "@/lib/utils";
 import { Separator } from "../ui/separator";
@@ -32,9 +31,7 @@ const colors = [
 
 const sizes = ["xs", "s", "m", "l", "xl", "xxl"];
 
-const categories = ["relojes", "joyas", "ropa", "accesorios"];
-
-export default function FilterProducts({ products }: FilterProductsProps) {
+export default function FilterProducts({ products, categories }: FilterProductsProps) {
     // Filter states
     const [size, setSize] = useState<string | null>(null);
     const [color, setColor] = useState<string | null>(null);
@@ -49,6 +46,10 @@ export default function FilterProducts({ products }: FilterProductsProps) {
 
         if (color) {
             filtered = filtered.filter((product) => product.color === color);
+        }
+
+        if (category && category?.length > 0) {
+            filtered = filtered.filter((product) => category?.includes(product.categoryId));
         }
 
         return filtered;
@@ -67,26 +68,26 @@ export default function FilterProducts({ products }: FilterProductsProps) {
                             <h2 className="font-bold">Categoría</h2>
                             {
                                 categories.map((categoryOption) => (
-                                    <div className="items-top flex space-x-2" key={categoryOption}>
+                                    <div className="items-top flex space-x-2" key={categoryOption.id}>
                                         <Checkbox
-                                            id={categoryOption}
-                                            checked={category?.includes(categoryOption)}
+                                            id={categoryOption.id}
+                                            checked={category?.includes(categoryOption.id)}
                                             onCheckedChange={(checked) => {
                                                 setCategory((prev) => {
                                                     if (checked) {
-                                                        return [...prev!, categoryOption];
+                                                        return [...prev!, categoryOption.id];
                                                     }
 
-                                                    return prev!.filter((category) => category !== categoryOption);
+                                                    return prev!.filter((category) => category !== categoryOption.id);
                                                 });
                                             }}
                                         />
                                         <div className="grid gap-1.5 leading-none">
                                             <label
-                                                htmlFor={categoryOption}
+                                                htmlFor={categoryOption.id}
                                                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                             >
-                                                {capitalize(categoryOption)}
+                                                {capitalize(categoryOption.name)}
                                             </label>
                                         </div>
                                     </div>
