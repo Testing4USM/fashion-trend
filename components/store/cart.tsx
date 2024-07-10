@@ -18,6 +18,7 @@ import { useContext, useState } from "react";
 import Image from "next/image";
 import { formatCurrency } from "@/lib/utils";
 import { Badge } from "../ui/badge";
+import Link from "next/link";
 
 interface ProductQuantityProps {
     product: ProductWithQuantity;
@@ -125,9 +126,20 @@ export default function Cart() {
                         )
                     }
                     <SheetFooter>
-                        <h3 className="py-4">
-                            Subtotal: <span className="font-bold">{formatCurrency(getCartTotal())}</span>
-                        </h3>
+                        <div className="py-4 flex flex-col gap-4">
+                            <h3>Subtotal: <span className="font-bold">{formatCurrency(getCartTotal())}</span></h3>
+                            {
+                                cartItems && cartItems.length > 0 && (
+                                    <Button
+                                        className="w-full uppercase"
+                                    >
+                                        <Link href="/checkout">
+                                            Ir a pagar
+                                        </Link>
+                                    </Button>
+                                )
+                            }
+                        </div>
                     </SheetFooter>
                 </SheetContent>
             </Sheet>
