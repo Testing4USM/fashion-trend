@@ -4,12 +4,12 @@
 
 import "@testing-library/jest-dom"
 import { render, screen, fireEvent } from "@testing-library/react"
-import MainPage from "@/app/(store)/page" 
+import TiendaPage from "@/app/(store)/tienda/page" 
 import { CartProvider } from "@/contexts/cart-context"
 
 describe("Store", () => {
     it("should contain two items", async() => {
-        const ui = await MainPage();
+        const ui = await TiendaPage();
         render(
             <CartProvider>
                 {ui}
@@ -23,7 +23,7 @@ describe("Store", () => {
 
 describe("Store", () => {
     it("should contain an item", async() => {
-        const ui = await MainPage();
+        const ui = await TiendaPage();
         render(
             <CartProvider>
                 {ui}
@@ -36,7 +36,7 @@ describe("Store", () => {
 
 describe("Store", () => {
     it("should filter with yellow color", async() => {
-        const ui = await MainPage();
+        const ui = await TiendaPage();
         const { container } = render(
             <CartProvider>
                 {ui}
@@ -54,7 +54,7 @@ describe("Store", () => {
 
 describe("Store", () => {
     it("should filter with green color and xl size", async() => {
-        const ui = await MainPage();
+        const ui = await TiendaPage();
         const { container } = render(
             <CartProvider>
                 {ui}
@@ -78,7 +78,7 @@ describe("Store", () => {
 
 describe("Store", () => {
     it("should filter with green color and xl size", async() => {
-        const ui = await MainPage();
+        const ui = await TiendaPage();
         const { container } = render(
             <CartProvider>
                 {ui}
@@ -102,7 +102,7 @@ describe("Store", () => {
 
 describe("Store", () => {
     it("should filter with green color and l size", async() => {
-        const ui = await MainPage();
+        const ui = await TiendaPage();
         const { container } = render(
             <CartProvider>
                 {ui}

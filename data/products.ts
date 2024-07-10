@@ -49,6 +49,18 @@ export async function getProducts(store: boolean = false) {
     return results;
 }
 
+export async function getLatestProducts() {
+    return await prisma.product.findMany({
+        include: {
+            category: true,
+        },
+        orderBy: {
+            createdAt: "desc",
+        },
+        take: 10,
+    });
+}
+
 export async function getProductById(id: string) {
     return await prisma.product.findUnique({
         where: {

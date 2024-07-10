@@ -17,6 +17,7 @@ import { MinusIcon, PlusIcon, ShoppingCart, TrashIcon } from "lucide-react";
 import { useContext, useState } from "react";
 import Image from "next/image";
 import { formatCurrency } from "@/lib/utils";
+import { Badge } from "../ui/badge";
 
 interface ProductQuantityProps {
     product: ProductWithQuantity;
@@ -83,8 +84,15 @@ export default function Cart() {
                     <Button
                         size="icon"
                         variant="outline"
-                        className="self-end"
+                        className="self-end relative"
                     >
+                        {
+                            getTotalItems() > 0 && (
+                                <Badge className="absolute -top-2 left-5 rounded-full m-0 py-0 px-1.5 text-[10px] font-bold">
+                                    {getTotalItems()}
+                                </Badge>
+                            )
+                        }
                         <ShoppingCart className="size-4" />
                     </Button>
                 </SheetTrigger>

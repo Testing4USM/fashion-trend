@@ -19,9 +19,10 @@ export default function Product({ product }: ProductProps) {
     const { addToCart, isItemInCart, getQuantity } = useContext(CartContext);
 
     return (
-        <Link href={`/productos/${product.id}`}>
-            <Card className="h-fit">
-                <CardHeader>
+
+        <Card className="h-fit">
+            <CardHeader>
+                <Link href={`/productos/${product.id}`}>
                     <Image
                         src={`/products/${product.image}`}
                         alt={product.name}
@@ -29,23 +30,23 @@ export default function Product({ product }: ProductProps) {
                         height={200}
                         className="object-contain w-full h-48"
                     />
-                </CardHeader>
-                <CardContent className="bg-muted/40 py-4 flex flex-col gap-2 justify-between">
-                    <CardTitle className="line-clamp-1">{product.name}</CardTitle>
-                    <CardDescription className="text-lg flex-1">{formatCurrency(product.price)}</CardDescription>
-                    <Button
-                        variant="outline"
-                        onClick={() => {
-                            addToCart(product);
-                        }}
-                    >
-                        <PlusIcon className="mr-2 h-4 w-4" />
-                        {
-                            isItemInCart(product) ? `${getQuantity(product)} en el carro` : "Añadir al carrito"
-                        }
-                    </Button>
-                </CardContent>
-            </Card>
-        </Link>
+                </Link>
+            </CardHeader>
+            <CardContent className="bg-muted/40 py-4 flex flex-col gap-2 justify-between">
+                <CardTitle className="line-clamp-1">{product.name}</CardTitle>
+                <CardDescription className="text-lg flex-1">{formatCurrency(product.price)}</CardDescription>
+                <Button
+                    variant="outline"
+                    onClick={() => {
+                        addToCart(product);
+                    }}
+                >
+                    <PlusIcon className="mr-2 h-4 w-4" />
+                    {
+                        isItemInCart(product) ? `${getQuantity(product)} en el carro` : "Añadir al carrito"
+                    }
+                </Button>
+            </CardContent>
+        </Card>
     )
 }
