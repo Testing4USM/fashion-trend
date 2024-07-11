@@ -119,11 +119,12 @@ export default function AddProductButton() {
                                 <FormItem>
                                     <FormLabel>Descripción</FormLabel>
                                     <FormControl>
-                                        <Textarea 
+                                        <Input 
                                             placeholder="Description"
                                             className="resize-none"
                                             required
                                             {...field} 
+                                            data-testid="description-input"
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -152,7 +153,8 @@ export default function AddProductButton() {
                                     <FormControl>
                                         <select {...field} 
                                         className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500"
-                                        required>
+                                        required
+                                        data-testid="category-select">
                                             <option value="">Seleccione una categoría</option>
                                             {categories.map((category) => (
                                                 <option key={category.id} value={category.id}>
