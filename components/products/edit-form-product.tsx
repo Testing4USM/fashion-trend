@@ -133,13 +133,10 @@ export default function EditFormProduct({ product }: EditFormProductProps) {
                                             <SelectValue placeholder="Selecciona una categoría" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="clothing">Clothing</SelectItem>
-                                            <SelectItem value="electronics">
-                                                Electronics
-                                            </SelectItem>
-                                            <SelectItem value="accessories">
-                                                Accessories
-                                            </SelectItem>
+                                            <SelectItem value="cly81k5r8000csvrnacucfguz"> Relojes</SelectItem>
+                                            <SelectItem value="cly7x06vf0000123pfebtz5v6"> Joyeria</SelectItem>
+                                            <SelectItem value="cly7x0w7l0001123ppwb01x5g">Ropa</SelectItem>
+                                            <SelectItem value="cly87wibm0000jhplgcmbizlp">Accesorios</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>

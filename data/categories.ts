@@ -2,28 +2,28 @@ import prisma from "@/prisma";
 
 const DEFAULT_DATA = [
     {
-        id: "ea6kfls1cxa",
+        id: "cly81k5r8000csvrnacucfguz",
         slug: "relojes",
         name: "Relojes",
         createdAt: new Date(),
         updatedAt: new Date(),
     },
     {
-        id: "ea6kfls1cxb",
-        slug: "joyas",
-        name: "Joyas",
+        id: "cly7x06vf0000123pfebtz5v6",
+        slug: "joyerias",
+        name: "Joyerias",
         createdAt: new Date(),
         updatedAt: new Date(),
     },
     {
-        id: "ea6kfls1cxc",
+        id: "cly7x0w7l0001123ppwb01x5g",
         slug: "ropa",
         name: "Ropa",
         createdAt: new Date(),
         updatedAt: new Date(),
     },
     {
-        id: "ea6kfls1cxd",
+        id: "cly87wibm0000jhplgcmbizlp",
         slug: "accesorios",
         name: "Accesorios",
         createdAt: new Date(),

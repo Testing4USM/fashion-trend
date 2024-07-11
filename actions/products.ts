@@ -10,7 +10,7 @@ import * as z from "zod";
 export async function createProduct(values: z.infer<typeof ProductSchema>) {
     const { name, price, description, stock, image, category } = values;
     const slug = name.toLowerCase().replace(/\s/g, "-");
-
+    
     let status = {
         error: false,
         message: "¡Producto creado con éxito!",
@@ -24,11 +24,14 @@ export async function createProduct(values: z.infer<typeof ProductSchema>) {
                 description,
                 stock,
                 image,
-                categoryId: "clwa30b210000lorxs69rwfbk",
+                categoryId: category,
                 slug,
             },
         });
     } catch (error) {
+        console.log(category)
+        console.log("Error al crear el producto:", error); 
+
         status = {
             error: true,
             message: "¡Hubo un error al crear el producto!",

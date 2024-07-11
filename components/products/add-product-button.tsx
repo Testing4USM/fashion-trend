@@ -12,9 +12,18 @@ import { Textarea } from "@/components/ui/textarea";
 import * as z from "zod";
 import { ProductSchema } from "@/schemas";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createProduct } from "@/actions/products";
 import { toast } from "sonner";
+import  getCategories from "@/data/categories";
+
+type Category = {
+    id: string;
+    slug: string;
+    name: string;
+    createdAt: Date;
+    updatedAt: Date;
+};
 
 export default function AddProductButton() {
     const form = useForm<z.infer<typeof ProductSchema>>({
@@ -31,6 +40,17 @@ export default function AddProductButton() {
 
     const [open, setOpen] = useState(false);
     const [pending, setPending] = useState(false);
+    const [categories, setCategories] = useState<Category[]>([]);
+
+    useEffect(() => {
+        async function fetchCategories() {
+            const categories = await getCategories();
+            setCategories(categories);
+        }
+
+        fetchCategories();
+    }, []);
+
 
     async function onSubmit(values: z.infer<typeof ProductSchema>) {
         setPending(true);
@@ -130,7 +150,16 @@ export default function AddProductButton() {
                                 <FormItem>
                                     <FormLabel>Categoría</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Category" {...field} required/>
+                                        <select {...field} 
+                                        className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500"
+                                        required>
+                                            <option value="">Seleccione una categoría</option>
+                                            {categories.map((category) => (
+                                                <option key={category.id} value={category.id}>
+                                                    {category.name}
+                                                </option>
+                                            ))}
+                                        </select>
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
