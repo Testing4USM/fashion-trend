@@ -29,7 +29,6 @@ export async function createProduct(values: z.infer<typeof ProductSchema>) {
             },
         });
     } catch (error) {
-        console.log(category)
         console.log("Error al crear el producto:", error); 
 
         status = {
