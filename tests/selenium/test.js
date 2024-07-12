@@ -52,6 +52,7 @@ describe('Selenium Tests', () => {
 
         await nameInput.sendKeys("Selenium testtt");
         const priceInput = await driver.findElement(By.name('price'));
+        await driver.wait(until.elementIsEnabled(priceInput), 1000);
 
         await priceInput.sendKeys("10000");
 
